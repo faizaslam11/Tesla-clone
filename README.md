@@ -1,5 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
-
+TESLA CLONE under Devlopment 
+Project started at 07:00 AM IST on 15-05-2021
 ## Available Scripts
 
 In the project directory, you can run:
