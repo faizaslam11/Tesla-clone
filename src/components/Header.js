@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import { selectCars } from '../features/car/carSlice'
+import { useSelector } from 'react-redux'
 
 function Header() {
+
+    const [burgerStatus, setBurgerStatus] = useState(false);
+    const cars= useSelector(selectCars)
     return (
         <Container>
         <a>
             <img src="images/logo.svg"></img>
         </a>  
         <Menu>
-        <a href="#">Model S</a> 
-        <a href="#">Model 3</a> 
-        <a href="#">Model X</a> 
-        <a href="#">Model Y</a> 
+        {cars && cars.map((car, index) => 
+            <a key ={index}  href="#">{car}</a> 
+        )}
+        
 
 
         </Menu>    
@@ -21,21 +26,22 @@ function Header() {
 
             <a href="#">Shop</a>
             <a href="#">Tesla Account </a>
-            <CustomMenu/>
+            <CustomMenu onClick={() => setBurgerStatus(true)}/>
         </RightMenu>   
-            <BurgerNav>
+                 <BurgerNav show={burgerStatus}>
             <CloseWrapper>
-              <CustomClose/>
+              <CustomClose onClick={() => setBurgerStatus(false)} />
             </CloseWrapper>
+            {cars && cars.map((car, index) => 
+            <li key ={index}><a href="#">{car}</a></li> )}
            
-            <li><a href="#">Existing Inventory</a></li>
-            <li><a href="#">Used Inventory</a></li>
-            <li><a href="#">Trade-In </a></li>
-            <li><a href="#">Cybertruck</a></li>
-            <li><a href="#">Roadaster</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Existing Inventory</a></li>
-            </BurgerNav>
+                    <li><a href="#">Existing Inventory</a></li>
+                    <li><a href="#">Used Inventory</a></li>
+                    <li><a href="#">Trade-In </a></li>
+                    <li><a href="#">Cybertruck</a></li>
+                    <li><a href="#">Roadaster</a></li>
+                   
+                    </BurgerNav>
 
         </Container>
     )
@@ -44,9 +50,8 @@ function Header() {
 export default Header
 
 const Container = styled.div`
-    z-index:1 ;
-
-    min-height: 60px;
+    
+    min-height: 20px;
     position: fixed;
     display: flex;
     align-items: center;
@@ -55,6 +60,8 @@ const Container = styled.div`
     top: 0;
     left: 0;
     right: 0;
+    z-index:1 ;
+
 `
 const Menu = styled.div`
     display: flex;
@@ -66,7 +73,7 @@ const Menu = styled.div`
         font-weight:600;
         text-transform: uppercase;
         padding:0 10px;
-        flex-wrap:nowrap;
+        flex-wrap: nowrap;
 
     } 
     @media (max-width:768px){
@@ -79,9 +86,6 @@ const RightMenu = styled.div`
    a {
     font-weight:600;
     text-transform: uppercase;
-   /* padding:0 10px;
-    flex-wrap:nowrap;
-*/
     margin-right:10px;
 } 
 `
@@ -101,8 +105,10 @@ const BurgerNav = styled.div`
     list-style:none;
     padding:20px;
     display:flex;
-    text-align:start;
-    justify-content: flex-start;
+    flex-direction: column;
+    text-align: start;
+    transform: ${props => props.show ? 'translateX(100%)': 'translateX(0%)'};
+    transition: transform 0.2s ease-in-out;
     li{
         padding: 15px 0;
         border-bottom: 1px solid rgba(0,0,0,.2)
