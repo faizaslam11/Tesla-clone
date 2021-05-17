@@ -1,6 +1,6 @@
 ## TESLA CLONE under Devlopment 
-# Project started at 07:00 AM IST on 15-05-2021
-# Project Done at 08:10 AM IST on 16-05-2021
+### Project started at 07:00 AM IST on 15-05-2021
+### Project Done at 08:10 AM IST on 16-05-2021
 (CSS error remaining for Nav bar)
 
 ### `npm start`
