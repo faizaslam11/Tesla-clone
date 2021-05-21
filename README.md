@@ -1,6 +1,6 @@
 ## TESLA CLONE with ReactJS and Material UI
 
-(CSS error remaining for Nav bar)
+(CSS mistakes remaining in Navbar)
 
 ### `npm start`
 
